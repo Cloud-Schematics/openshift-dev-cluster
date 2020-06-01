@@ -1,4 +1,4 @@
-# cluster
+# OpenShift Dev Cluster
 Terraform template for creating a team development cluster.   This template will:
 
 1. Create a new OpenShift cluster on [IBM Cloud](https://cloud.ibm.com)
