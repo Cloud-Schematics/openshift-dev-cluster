@@ -1,5 +1,11 @@
 # cluster
-Terraform template for creating a team development cluster. 
+Terraform template for creating a team development cluster.   This template will:
+
+1. Create a new OpenShift cluster on [IBM Cloud](https://cloud.ibm.com)
+2. Install the [IBM Cloud Operator](https://github.com/IBM/cloud-operators) into the cluster
+3. Install the [CodeReady Workspaces Operator](https://github.com/redhat-developer/codeready-workspaces-operator) into the cluster
+4. Create an instance of Eclipse Che (team editing environment) inside of the cluster
+5. Install the [CodeReady Pipelines Operator](https://github.com/openshift/tektoncd-pipeline) into the cluster
 
 
 # Prerequisite 
