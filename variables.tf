@@ -1,26 +1,71 @@
-variable "ibmcloud_api_key" {}
-variable "machine_type" {
-   default = "b3c.8x32"
-}
-variable "hardware" {
-   default = "shared"
+variable "ibmcloud_api_key" {
+  type        = string
+  description = "The IAM API Key for IBM Cloud access"
 }
 
-variable "datacenter" {
-  default = "dal12"
+# Resource Group Variables
+variable "resource_group_name" {
+  type        = string
+  description = "Existing resource group where the IKS cluster will be provisioned. Use `ibmcloud resource groups` or visit https://cloud.ibm.com/account/resource-groups to see a list of available resource groups."
 }
 
-variable "default_pool_size" {
-  default = "2"
+# Cluster Variables
+variable "private_vlan_id" {
+  type        = string
+  description = "Existing private VLAN id for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available private vlans.  If you do not have any existing vlans, leave this field blank."
 }
 
-variable "private_vlan_id" {}
-
-variable "public_vlan_id" {}
-
-variable "name" {
-  default = "cluster"
+variable "public_vlan_id" {
+  type        = string
+  description = "Existing public VLAN number for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available public vlans. If you do not have any existing vlans, leave this field blank."
 }
-variable kube_version {
-  default = "4.3_openshift"
+
+variable "vlan_datacenter" {
+  type        = string
+  description = "Datacenter for VLANs defined in private_vlan_number and public_vlan_number. Use `ibmcloud ks zone ls --provider classic` to see a list of availabe datacenters.  The data center should be in within the cluster's region."
+}
+
+variable "cluster_machine_type" {
+  type        = string
+  description = "The machine type for the cluster worker nodes (b3c.4x16 is minimum for OpenShift). Use `ibmcloud ks flavors --zone <zone>` to see the flavors available."
+  default     = "b3c.4x16"
+}
+
+variable "cluster_worker_count" {
+  description = "The number of worker nodes for the cluster."
+  default     = 3
+}
+
+variable "cluster_hardware" {
+  type        = string
+  description = "The level of hardware isolation for your worker node. Use 'dedicated' to have available physical resources dedicated to you only, or 'shared' to allow physical resources to be shared with other IBM customers."
+  default     = "shared"
+}
+
+variable "cluster_name" {
+  type        = string
+  description = "The name of the cluster"
+}
+
+variable "cluster_version" {
+  type        = string
+  description = "The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions."
+  default     = "4.3_openshift"
+}
+
+
+variable "cluster_region" {
+  type        = string
+  description = "The IBM Cloud region where the cluster will be/has been installed. Use `ibmcloud regions` to see a list of regions."
+}
+
+
+# Template data Variables
+data "ibm_resource_group" "resource_group" {
+  name = var.resource_group_name
+}
+
+data "ibm_container_cluster_config" "config" {
+  cluster_name_id = ibm_container_cluster.create_cluster.id
+  resource_group_id = data.ibm_resource_group.resource_group.id
 }

@@ -1,10 +1,19 @@
-# cluster
-Simple template to deploy an IBM Cloud Kubernetes Openshift cluster
+# OpenShift Dev Cluster
+Terraform template for creating a team development cluster.   This template will:
+
+1. Create a new OpenShift cluster on [IBM Cloud](https://cloud.ibm.com)
+2. Install the [IBM Cloud Operator](https://github.com/IBM/cloud-operators) into the cluster
+3. Install the [CodeReady Workspaces Operator](https://github.com/redhat-developer/codeready-workspaces-operator) into the cluster
+4. Create an instance of Eclipse Che (team editing environment) inside of the cluster
+5. Install the [CodeReady Pipelines Operator](https://github.com/openshift/tektoncd-pipeline) into the cluster
 
 
 # Prerequisite 
-1) Download [Terraform binary](https://www.terraform.io/downloads.html).  Unzip it and keep the binary in path ex- /usr/local/bin.
-2) Download [IBM Cloud Provider Plugin](https://github.com/IBM-Bluemix/terraform-provider-ibm/releases). Unzip it and keep the binary in path in the same directory where you placed Terraform binary in previous step. You can also build the binary yourself. Please look into [documentation](https://github.com/IBM-Bluemix/terraform-provider-ibm/blob/master/README.md).
+- Create an [IBM Cloud account](https://cloud.ibm.com/registration)
+- Install the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
+- Install the [OpenShift CLI](https://cloud.ibm.com/docs/openshift?topic=openshift-openshift-cli)
+- Download [Terraform binary](https://www.terraform.io/downloads.html).  Unzip it and keep the binary in path ex- /usr/local/bin.
+- Download [IBM Cloud Provider Plugin](https://github.com/IBM-Bluemix/terraform-provider-ibm/releases). Unzip it and keep the binary in path in the same directory where you placed Terraform binary in previous step. You can also build the binary yourself. Please look into [documentation](https://github.com/IBM-Bluemix/terraform-provider-ibm/blob/master/README.md).
 
 # To run this project locally execute the following steps:
 
@@ -26,10 +35,14 @@ On OS X this is achieved by entering the following into your terminal, replacing
 
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
-|machine_type| The type of the machine flavor|b2c.8x32| 
-|hardware   |  The level of hardware isolation for your worker node|shared|
-|datacenter|The datacenter to provision cluster |wdc07|
-|default_pool_size| No of workers in default pool | 2 |
-|private_vlan_id|The private vlan ID. Run ic ks vlans `datacenter` to retrieve vlans||
-|public_vlan_id|The public vlan ID.Run ic ks vlans `datacenter` to retrieve vlans||
-|kube_version|The desired Kubernetes openshift version of the created cluster.|4.3_openshift|
+|resource_group_name| Existing resource group where the IKS cluster will be provisioned. Use `ibmcloud resource groups` or visit https://cloud.ibm.com/account/resource-groups to see a list of available resource groups. | | 
+|private_vlan_id   |  Existing private VLAN id for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available private vlans.  If you do not have any existing vlans, leave this field blank. |  |
+|public_vlan_id   |  Existing private VLAN id for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available private vlans.  If you do not have any existing vlans, leave this field blank. |  |
+| vlan_datacenter   | Datacenter for VLANs defined in private_vlan_number and public_vlan_number. Use `ibmcloud ks zone ls --provider classic` to see a list of availabe datacenters.  The data center should be in within the cluster's region.  |  |
+|cluster_machine_type   |  The machine type for the cluster worker nodes (b3c.4x16 is minimum for OpenShift). Use `ibmcloud ks flavors --zone <zone>` to see the flavors available. | b3c.4x16 |
+|cluster_worker_count   | The number of worker nodes for the cluster.  | 3 |
+|cluster_hardware   | The level of hardware isolation for your worker node. Use 'dedicated' to have available physical resources dedicated to you only, or 'shared' to allow physical resources to be shared with other IBM customers.  | shared |
+|cluster_name   | The name of the cluster  |  |
+|cluster_version   | The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions.  | 4.3_openshift |
+|cluster_region   | The IBM Cloud region where the cluster will be/has been installed. Use `ibmcloud regions` to see a list of regions.  |  |
+
