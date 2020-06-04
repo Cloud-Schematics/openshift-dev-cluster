@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 export KUBECONFIG="${KUBECONFIG}"
-oc login -u apikey -p ${APIKEY} > /dev/null
 
 TMP_DIR="./.devtmp"
 mkdir -p ${TMP_DIR}
