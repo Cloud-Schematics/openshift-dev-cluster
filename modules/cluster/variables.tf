@@ -1,7 +1,4 @@
-variable "ibmcloud_api_key" {
-  type        = string
-  description = "The IAM API Key for IBM Cloud access"
-}
+
 
 # Resource Group Variables
 variable "resource_group_name" {
@@ -20,36 +17,35 @@ variable "public_vlan_id" {
   description = "Existing public VLAN number for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available public vlans. If you do not have any existing vlans, leave this field blank."
 }
 
-variable "vlan_datacenter" {
+variable "datacenter" {
   type        = string
   description = "Datacenter for VLANs defined in private_vlan_number and public_vlan_number. Use `ibmcloud ks zone ls --provider classic` to see a list of availabe datacenters.  The data center should be in within the cluster's region."
 }
 
-variable "cluster_machine_type" {
+variable "machine_type" {
   type        = string
   description = "The machine type for the cluster worker nodes (b3c.4x16 is minimum for OpenShift). Use `ibmcloud ks flavors --zone <zone>` to see the flavors available."
   default     = "b3c.4x16"
 }
 
-variable "cluster_worker_count" {
+variable "default_pool_size" {
   description = "The number of worker nodes for the cluster."
   default     = 3
 }
 
-variable "cluster_hardware" {
+variable "hardware" {
   type        = string
   description = "The level of hardware isolation for your worker node. Use 'dedicated' to have available physical resources dedicated to you only, or 'shared' to allow physical resources to be shared with other IBM customers."
   default     = "shared"
 }
 
-variable "cluster_name" {
+variable "name" {
   type        = string
   description = "The name of the cluster"
 }
 
-variable "cluster_version" {
+variable "kube_version" {
   type        = string
   description = "The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions."
   default     = "4.3_openshift"
 }
-
