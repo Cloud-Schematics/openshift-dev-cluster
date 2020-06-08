@@ -13,11 +13,13 @@ variable "resource_group_name" {
 # Cluster Variables
 variable "private_vlan_id" {
   type        = string
+  default     = ""
   description = "Existing private VLAN id for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available private vlans.  If you do not have any existing vlans, leave this field blank."
 }
 
 variable "public_vlan_id" {
   type        = string
+  default     = ""
   description = "Existing public VLAN number for cluster creation. Use `ibmcloud ks vlan ls --zone <zone>` or visit https://cloud.ibm.com/classic/network/vlans to see a list of available public vlans. If you do not have any existing vlans, leave this field blank."
 }
 
