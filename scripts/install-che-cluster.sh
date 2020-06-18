@@ -16,12 +16,20 @@ metadata:
   namespace: ${NAMESPACE}
 spec:
   server:
+    customCheProperties:
+      CHE_INFRA_KUBERNETES_NAMESPACE_DEFAULT: <username>-code
+      CHE_WORKSPACE_DEFAULT__CPU__LIMIT__CORES: '0.4'
+      CHE_WORKSPACE_DEFAULT__CPU__REQUEST__CORES: '0.03'
+      CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__LIMIT__CORES: '0.4'
+      CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__REQUEST__CORES: '0.03'
+      CHE_WORKSPACE_STOP_ROLE_ENABLED: 'true'
     cheImageTag: ''
     cheFlavor: codeready
     devfileRegistryImage: ''
     pluginRegistryImage: ''
     tlsSupport: true
     selfSignedCert: false
+    allowUserDefinedWorkspaceNamespaces: true
   database:
     externalDb: false
     chePostgresHostName: ''
