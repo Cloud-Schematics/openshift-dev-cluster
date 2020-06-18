@@ -1,5 +1,7 @@
-# OpenShift Dev Cluster
-Terraform template for creating a team development cluster.   This template will:
+# Open Shift Development Environment
+Provision a new team development OpenShift cluster preconfigured with the IBM Cloud Operator, CodeReady Workspaces, and CodeReady Pipelines.
+
+This terraform template will:
 
 1. Create a new OpenShift cluster on [IBM Cloud](https://cloud.ibm.com)
 2. Install the [IBM Cloud Operator](https://github.com/IBM/cloud-operators) into the cluster
