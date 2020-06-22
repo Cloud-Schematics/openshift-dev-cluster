@@ -17,14 +17,14 @@ metadata:
 spec:
   server:
     customCheProperties:
-      CHE_INFRA_KUBERNETES_NAMESPACE_DEFAULT: <username>-code
+      CHE_INFRA_KUBERNETES_NAMESPACE_DEFAULT: che-ws-<username>
       CHE_WORKSPACE_DEFAULT__CPU__LIMIT__CORES: '0.4'
       CHE_WORKSPACE_DEFAULT__CPU__REQUEST__CORES: '0.03'
       CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__LIMIT__CORES: '0.4'
       CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__REQUEST__CORES: '0.03'
       CHE_WORKSPACE_STOP_ROLE_ENABLED: 'true'
     cheImageTag: ''
-    cheFlavor: che
+    cheFlavor: codeready
     devfileRegistryImage: ''
     pluginRegistryImage: ''
     tlsSupport: true
