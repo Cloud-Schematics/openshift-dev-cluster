@@ -24,7 +24,7 @@ spec:
       CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__REQUEST__CORES: '0.03'
       CHE_WORKSPACE_STOP_ROLE_ENABLED: 'true'
     cheImageTag: ''
-    cheFlavor: codeready
+    cheFlavor: che
     devfileRegistryImage: ''
     pluginRegistryImage: ''
     tlsSupport: true
