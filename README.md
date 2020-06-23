@@ -32,6 +32,48 @@ On OS X this is achieved by entering the following into your terminal, replacing
 
 - `export TF_VAR_ibmcloud_api_key=<value>`
 
+# Post-installation configuration
+
+After installation, additional configuration is needed to take advantage of the tools installed into your cluster.  
+
+## IBM Cloud Operator
+Once your cluster has been created and the IBM Cloud Operator has been installed, you must finish configuration of the IBM Cloud Operator before it can be used to create or bind services on IBM Cloud.  
+
+You need an [IBM Cloud account](https://cloud.ibm.com/registration) and the 
+[IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started).
+You need also to have the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)  
+already configured to access your cluster. Before installing the operator, you need to login to 
+your IBM cloud account with the IBM Cloud CLI:
+
+```bash
+ibmcloud login
+```
+
+and set a default target environment for your resources with the command:
+
+```bash
+ibmcloud target --cf -g default
+```
+
+This will use the IBM Cloud ResourceGroup `default`. To specify a different ResourceGroup, use the following command:
+```bash
+ibmcloud target -g <resource-group>
+```
+
+Notice that the `org` and `space` must be included, even if no Cloud Foundry services will be instantiated.
+
+You can then configure the operator running the following script:
+
+```
+curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/config-operator.sh | bash 
+```
+
+The script above creates an IBM Cloud API Key and stores it in a Kubernetes secret that can be accessed by the operator, and it sets defaults such as the resource group and region used to provision IBM Cloud Services. You can always override the defaults in the Service custom resource. If you prefer to create the secret and the defaults manually, consult the [IBM Cloud Operator documentation](https://github.com/IBM/cloud-operators).
+
+## CodeReady Workspaces/Eclipse Che
+Once the developement cluster terraform template has completed execution, you will end up with an OpenShift cluster that already has the CodeReady Workspaces Operator installed, and has already created a CheCluster instance.   You will see a direct URL to the CodeReady Workspaces instance in the Terraform logs, or you can open the OpenShift Dashboard, navigate to the `codeready-workspaces` project, and then find the `codeready`  deployment to see the URL route associated with the CheCluster instance.
+
+**⚠️ Warning:** The first time that you attempt to log into the CodeReady Workspaces instance you will first log in and grant access using your IBM Cloud account's oAuth integration, and then continue to create a CodeReady Workspaces account.  When you create your CodeReady Workspaces account, you **MUST** change the default user name that is provided by the oAuth integration.  The default user name will likely be in the format `IAM#user@email.com`.  This format is not compatible with the CodeReady Workspaces runtime.  The user name should be an alphanumeric text string without any special characters and _without_ the `IAM#` prefix.    
 
 # Variables
 
