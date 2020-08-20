@@ -89,4 +89,5 @@ Once the developement cluster terraform template has completed execution, you wi
 |cluster_name   | The name of the cluster  |  |
 |cluster_version   | The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions.  | 4.3_openshift |
 |cluster_region   | The IBM Cloud region where the cluster will be/has been installed. Use `ibmcloud regions` to see a list of regions.  |  |
+|entitlement  | If you purchased an IBM Cloud Cloud Pak that includes an entitlement to run worker nodes that are installed with OpenShift Container Platform, enter `cloud_pak` to create your cluster with that entitlement so that you are not charged twice for the OpenShift license. Note that this option can be set only when you create the cluster. After the cluster is created, the cost for the OpenShift license occurred and you cannot disable this charge.  |  |
 

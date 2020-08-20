@@ -9,6 +9,7 @@ module "cluster" {
   kube_version      = var.cluster_version
   public_vlan_id    = var.public_vlan_id
   private_vlan_id   = var.private_vlan_id
+  entitlement       = var.entitlement
 }
 
 module "ibm-cloud-operator" {
