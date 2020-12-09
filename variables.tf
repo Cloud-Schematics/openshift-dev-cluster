@@ -55,13 +55,3 @@ variable "cluster_version" {
   description = "The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions."
   default     = "4.3_openshift"
 }
-
-//Variable required for content catalog to select terraform version
-variable "TF_VERSION" {
-  default = "0.12"
-  description = "terraform engine version to be used in schematics"
-}
-
-terraform {
-  required_version = "> 0.12.0"
-}
