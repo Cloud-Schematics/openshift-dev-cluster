@@ -4,8 +4,8 @@ resource "null_resource" "install_codeready_workspaces_operator" {
 
     environment={
       KUBECONFIG     = var.cluster_config_path
-      OPERATOR_NAME  = "codeready-workspaces"
-      OPERATOR_NAMESPACE= "codeready-workspaces"
+      OPERATOR_NAME  = "openshift-workspaces"
+      OPERATOR_NAMESPACE= "openshift-workspaces"
     }
   }
 
@@ -14,8 +14,8 @@ resource "null_resource" "install_codeready_workspaces_operator" {
 
     environment={
       KUBECONFIG     = var.cluster_config_path
-      NAME           = "codeready-workspaces"
-      NAMESPACE      = "codeready-workspaces"
+      NAME           = "openshift-workspaces"
+      NAMESPACE      = "openshift-workspaces"
     }
   }  
 }
