@@ -49,3 +49,9 @@ variable "kube_version" {
   description = "The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions."
   default     = "4.3_openshift"
 }
+
+variable "entitlement" {
+  type        = string
+  description = "If you purchased an IBM Cloud Cloud Pak that includes an entitlement to run worker nodes that are installed with OpenShift Container Platform, enter `cloud_pak` to create your cluster with that entitlement so that you are not charged twice for the OpenShift license. Note that this option can be set only when you create the cluster. After the cluster is created, the cost for the OpenShift license occurred and you cannot disable this charge."
+  default     = ""
+}
