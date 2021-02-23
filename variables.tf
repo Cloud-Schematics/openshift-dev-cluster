@@ -53,7 +53,7 @@ variable "cluster_name" {
 variable "cluster_version" {
   type        = string
   description = "The OpenShift version to install. Use `ibmcloud ks versions --show-version OpenShift` to see a list of OpenShift versions."
-  default     = "4.4.33_openshift"
+  default     = "4.6.16_openshift"
 }
 
 variable "entitlement" {
