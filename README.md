@@ -27,6 +27,13 @@ To run this project locally, complete the following steps:
 - Clone this project.
 - You can override default values that are in your `variables.tf` file.
   - Alternatively, you can supply these values by using the command line or [environment variables](https://www.terraform.io/intro/getting-started/variables.html).
+
+
+# Deploy on IBM Cloud using IBM Cloud Schematics
+
+You can use IBM Cloud Schematics to deploy this Terraform template in the cloud without having a local terraform configuration.   Just use this link:
+
+- [Deploy on IBM Cloud](https://cloud.ibm.com/schematics/workspaces/create?repository=https://github.com/Cloud-Schematics/openshift-dev-cluster&terraform_version=terraform_v0.12)
   
 ## Environment variables that use IBMid credentials
 
