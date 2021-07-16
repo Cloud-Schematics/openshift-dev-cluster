@@ -33,7 +33,7 @@ To run this project locally, complete the following steps:
 
 You can use IBM Cloud Schematics to deploy this Terraform template in the cloud without having a local terraform configuration.   Just use this link:
 
-- [Deploy on IBM Cloud](https://cloud.ibm.com/schematics/workspaces/create?repository=https://github.com/Cloud-Schematics/openshift-dev-cluster&terraform_version=terraform_v0.12)
+[![Deploy to Kubernetes on {{site.data.keyword.cloud_notm}}](../images/Deploy_to_Openshift.svg "Deploy to Kubernetes on {{site.data.keyword.cloud_notm}}")](https://cloud.ibm.com/schematics/workspaces/create?repository=https://github.com/Cloud-Schematics/openshift-dev-cluster&terraform_version=terraform_v0.12){: external}
   
 ## Environment variables that use IBMid credentials
 
