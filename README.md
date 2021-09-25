@@ -1,4 +1,4 @@
-# OpenShift Development Environment
+# OpenShift cluster on Classic infrastrucutre for development environment
 
 Provision a new team development OpenShift cluster that is preconfigured with the IBM Cloud Operator, CodeReady Workspaces, and CodeReady Pipelines.
 
